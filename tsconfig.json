@@ -1,18 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "lib": ["es6"],
-        "module": "commonjs",
-        "types": ["reflect-metadata"],
-        "outDir": "dist",
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
-    },
-    "include": [
-        "src/**/*.ts"
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "lib": [
+      "es2015",
+      "es2016"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5"
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true
+  }
 }
