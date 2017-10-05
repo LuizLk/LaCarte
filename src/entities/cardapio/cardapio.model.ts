@@ -5,4 +5,5 @@ import { BaseEntity } from "../base-entity";
 export class Cardapio extends BaseEntity {
   @Column() public nome: string;
   @Column() public descricao: string;
+  @Column() public ativo: boolean;
 }

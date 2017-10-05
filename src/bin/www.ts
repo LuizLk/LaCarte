@@ -8,6 +8,8 @@ import { app } from './app';
 
 useContainer(Container);
 
+const port = process.env.port || 8082;
+
 createConnection({
   ...config.sql,
   entities: [
@@ -18,7 +20,7 @@ createConnection({
 }).then(
   () => http
     .createServer(app)
-    .listen(8082, () => console.log('Server started on port 8082'))
+    .listen(port, () => console.log('Server started on port ' + port))
   ).catch(
   (err: Error) => console.error(err.message)
   );
