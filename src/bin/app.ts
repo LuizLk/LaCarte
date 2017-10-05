@@ -4,7 +4,7 @@ import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import { useContainer, useExpressServer } from 'routing-controllers';
 import { Container } from 'typedi';
-import { QuestionController, UserController } from '../controllers';
+import { UserController } from '../controllers';
 
 useContainer(Container);
 
@@ -19,7 +19,6 @@ config
 
 const app: express.Application = useExpressServer(config, {
   controllers: [
-    QuestionController,
     UserController
   ],
   routePrefix: '/api/v1'

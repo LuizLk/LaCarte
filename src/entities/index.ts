@@ -1,3 +1,3 @@
 export * from './base-entity';
-export * from './question';
 export * from './user';
+export * from './cardapio'
