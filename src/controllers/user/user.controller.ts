@@ -4,7 +4,7 @@ import { IUser, User, UserService } from '../../entities/user';
 
 @JsonController('/user')
 export class UserController {
-  
+
   @Inject()
   private userService: UserService;
 
@@ -19,15 +19,15 @@ export class UserController {
   }
 
   @Get()
-  public httpGetAll (): Promise<User[]> {
+  public httpGetAll(): Promise<User[]> {
     return this.userService.readAll();
   }
 
   @Get("/:id")
   public httpGet(
     @Param("id")
-    id: string
+    id: number
     ): Promise<User> {
-    return this.userService.readOne(parseInt(id));
+    return this.userService.readOne(id);
   }
 }
