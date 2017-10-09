@@ -1,11 +1,11 @@
-export interface IService<T, TModel> {
-  create(props: T): Promise<TModel>;
+export interface IServiceBase<TRequest, TResponse> {
+  create(props: TRequest): Promise<TResponse>;
 
-  readOne(id: number): Promise<TModel>;
+  readOne(id: number): Promise<TResponse>;
 
-  update(props: T): Promise<TModel>;
+  update(props: TRequest): Promise<TResponse>;
 
-  drop(id: number): Promise<TModel>;
+  drop(id: number): Promise<TResponse>;
 
-  readAll(): Promise<TModel[]>;
+  readAll(): Promise<TResponse[]>;
 }

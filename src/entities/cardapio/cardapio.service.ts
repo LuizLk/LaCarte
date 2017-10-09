@@ -1,12 +1,12 @@
 import { Service } from 'typedi';
 import { Cardapio } from "./cardapio.model";
 import { ICardapio } from "./cardapio.interface";
-import { IService } from "../base-entity/base-entity.service";
+import { IServiceBase } from "../base-entity/base-entity.service";
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
 
 @Service()
-export class CardapioService implements IService<ICardapio, Cardapio> {
+export class CardapioService implements IServiceBase<ICardapio, Cardapio> {
 
   @OrmRepository(Cardapio) repository: Repository<Cardapio>;
 

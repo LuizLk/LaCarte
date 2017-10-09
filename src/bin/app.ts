@@ -4,7 +4,7 @@ import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import { useContainer, useExpressServer } from 'routing-controllers';
 import { Container } from 'typedi';
-import { UserController } from '../controllers';
+import { UserController, CardapioController } from '../controllers';
 
 useContainer(Container);
 
@@ -14,14 +14,15 @@ config
   .use(morgan('dev'))
   .use(helmet())
   .use(urlencoded({
-    extended: false
+    extended: true
   }));
 
 const app: express.Application = useExpressServer(config, {
   controllers: [
-    UserController
+    UserController,
+    CardapioController
   ],
-  routePrefix: '/api/v1'
+  routePrefix: '/api/v1',
 });
 
 export { app };
