@@ -1,16 +1,15 @@
 import { Service } from 'typedi';
 import { Cardapio } from "./cardapio.model";
-import { ICardapio } from "./cardapio.interface";
 import { IServiceBase } from "../base-entity/base-entity.service";
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
 
 @Service()
-export class CardapioService implements IServiceBase<ICardapio, Cardapio> {
+export class CardapioService implements IServiceBase<Cardapio> {
 
   @OrmRepository(Cardapio) repository: Repository<Cardapio>;
 
-  create(props: ICardapio): Promise<Cardapio> {
+  create(props: Cardapio): Promise<Cardapio> {
     return this.repository.persist(props);
   }
   readOne(id: number): Promise<Cardapio> {
@@ -25,7 +24,7 @@ export class CardapioService implements IServiceBase<ICardapio, Cardapio> {
     }
     return result;
   }
-  update(props: ICardapio): Promise<Cardapio> {
+  update(props: Cardapio): Promise<Cardapio> {
     return this.repository.persist(props);
   }
   drop(id: number): Promise<Cardapio> {

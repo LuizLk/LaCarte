@@ -8,7 +8,6 @@ export class CardapioItemController {
 
     @Inject()
     private cardapioItemService: CardapioItemService;
-    
 
     @Post()
     @HttpCode(201)
@@ -20,7 +19,7 @@ export class CardapioItemController {
         }) props: ICardapioItem
         ): Promise<any> {
         let cardapioItem = plainToClass(CardapioItem, props);
-        return this.cardapioItemService.create(idCardapio, cardapioItem);
+        return this.cardapioItemService.create(cardapioItem, idCardapio);
     }
 
     @Get()

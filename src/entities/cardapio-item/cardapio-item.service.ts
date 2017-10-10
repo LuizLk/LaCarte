@@ -1,32 +1,31 @@
 import { Service } from 'typedi';
-import { CardapioItem, ICardapioItem } from "../cardapio-item";
+import { CardapioItem } from "../cardapio-item";
 import { IServiceBase } from "../base-entity";
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
-import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 import { ResponseData } from "../response-data";
 
 @Service()
-export class CardapioItemService implements IServiceBase<ICardapioItem, CardapioItem | ResponseData> {
+export class CardapioItemService implements IServiceBase<CardapioItem> {
 
-    @OrmRepository(CardapioItem) repository: Repository<CardapioItem>;
+    @OrmRepository(CardapioItem) private repository: Repository<CardapioItem>;
 
-    create(props: ICardapioItem): Promise<ResponseData> {
-        let cardapioItem = plainToClass(CardapioItem, props);
+    create(props: CardapioItem, ...params: any[]): Promise<ResponseData> {
+        let idCardapio = params[0];
+
         let responseData = new ResponseData();
-        return validate(cardapioItem)
+        return validate(props)
             .then(errors => {
                 if (errors.length > 0) {
                     errors.forEach(function (val) {
                         responseData.mensagens.push(val.value);
                     });
                     responseData.objeto = props;
-                    responseData.status = true;
                 }
                 else {
                     responseData.mensagens.push("OK!");
-                    responseData.objeto = this.repository.persist(cardapioItem);
+                    responseData.objeto = this.repository.persist(props);
                 }
                 return responseData;
             });
@@ -43,7 +42,7 @@ export class CardapioItemService implements IServiceBase<ICardapioItem, Cardapio
         }
         return result;
     }
-    update(props: ICardapioItem): Promise<CardapioItem> {
+    update(props: CardapioItem): Promise<CardapioItem> {
         return this.repository.persist(props);
     }
     drop(id: number): Promise<CardapioItem> {
@@ -61,7 +60,8 @@ export class CardapioItemService implements IServiceBase<ICardapioItem, Cardapio
         }
         return result;
     }
-    readAll(): Promise<CardapioItem[]> {
-        return this.repository.find();
+    readAll(...params: any[]): Promise<CardapioItem[]> {
+        let idCardapio = params[0];
+        return this.repository.find({ cardapio: idCardapio });
     }
 }

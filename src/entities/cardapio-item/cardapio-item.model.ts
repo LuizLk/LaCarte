@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { Cardapio } from "../cardapio";
 import { IsString, IsNotEmpty, IsNumber, IsUrl } from "class-validator";
-import { Exclude } from "class-transformer";
+import { Exclude, Type } from "class-transformer";
 
 @Entity()
 export class CardapioItem extends BaseEntity {
@@ -29,5 +29,6 @@ export class CardapioItem extends BaseEntity {
     public ativo: boolean;
 
     @ManyToOne(type => Cardapio, cardapio => cardapio.items)
+    @Type(() => Cardapio)
     public cardapio: Cardapio;
 }
