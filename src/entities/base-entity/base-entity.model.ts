@@ -13,7 +13,7 @@ export abstract class BaseEntity {
     generated: true
   })
   public id: number;
-  @CreateDateColumn() public createdAt: Date;
-  @UpdateDateColumn() public updatedAt: Date;
+  @CreateDateColumn() public createdAt?: Date;
+  @UpdateDateColumn() public updatedAt?: Date;
   @VersionColumn() public version?: number;
 }
