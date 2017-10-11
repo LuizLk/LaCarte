@@ -12,11 +12,3 @@ export class Mesa {
 	codigo: number; // metodo 1 de achar a mesa no banco de dados
 	qrcode: string; // metodo 2 de achar a mesa no banco de dados
 }
-
-export class Produto {
-	restaurante: number; // relativo a qual restaurante
-	nome: string;
-	categoria: string;
-	preco: number;
-	descricao: string;
-}

@@ -14,12 +14,14 @@ export class MesaPage {
 	
 	public mesaBuffer = new Mesa();
 	public mesa ={};
-	public data = JSON.parse(localStorage.getItem('mesaBuffer'));
+	public data = JSON.parse(localStorage.getItem('mesaData'));
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider, public alertCtrl: AlertController) {
+		localStorage.clear();
   }
 
 	Validar(){ //verifica se a mesa se encontra no banco.
+		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
     if(this.mesaBuffer.codigo === this.data.id){
       this.navCtrl.push(CardapioPage)
     }else{
@@ -28,7 +30,7 @@ export class MesaPage {
 	}
 
 	getData(){
-    this.rest.getMesa(123).subscribe(data=>
+    this.rest.getMesa(1).subscribe(data=>
       {
         console.log(data);
         this.mesa = data;
@@ -48,6 +50,6 @@ export class MesaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MesaPage');
+		console.log('ionViewDidLoad MesaPage');
   }
 }

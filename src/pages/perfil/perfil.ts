@@ -15,8 +15,6 @@ export class PerfilPage {
   public user1 = new User();
 
   user = {};
-  userData = {"name": "","email": "", "telefone": "","cpf": "","senha": ""};
-
 
   constructor(public navCtrl: NavController, private rest: RestProvider, public alertCtrl: AlertController) {
     this.getData();
@@ -71,12 +69,6 @@ export class PerfilPage {
       ]
     });
     prompt.present();
-  }
-
-  excluir(){    // Função para alterar dados do usuarios
-    console.log(this.user);
-    this.rest.deleteUser(this.user);
-    this.navCtrl.push(EditarPage);
   }
 
   mudarPage(){

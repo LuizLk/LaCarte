@@ -21,7 +21,6 @@ export class LoginPage {
   responseData: any;
   public usuarioLogin = new User();
   public data1 = JSON.parse(localStorage.getItem('userData'))
-  userData = {"name": "","email": "", "telefone": "","cpf": "","senha": ""}; // apenas pra teste
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider,public alertCtrl: AlertController) {
   }
@@ -40,7 +39,7 @@ export class LoginPage {
       this.navCtrl.push(PerfilPage)
 
     }else{
-      this.showAlertOFF();
+      this.showAlert();
     }
   }
 
@@ -74,7 +73,7 @@ export class LoginPage {
   }
 
   public moveTo(){
-    this.navCtrl.push(CadastPage);
+		this.navCtrl.push(CadastPage);
   }
 
 }
