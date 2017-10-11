@@ -1,23 +1,22 @@
-import { Restaurante } from "./restaurante.model";
-import { Service } from "typedi";
+import { Produto } from "../produto";
 import { IServiceBase } from "../base-entity";
-import { OrmRepository } from "typeorm-typedi-extensions";
-import { Repository } from "typeorm";
-import { validate } from "class-validator";
 import { ResponseData } from "../response-data";
+import { Repository } from "typeorm";
+import { OrmRepository } from "typeorm-typedi-extensions";
+import { Service } from "typedi";
+import { validate } from "class-validator";
 
 @Service()
-export class RestauranteService implements IServiceBase<Restaurante> {
-  @OrmRepository(Restaurante) private repository: Repository<Restaurante>;
+export class ProdutoService implements IServiceBase<Produto> {
+  @OrmRepository(Produto) private repository: Repository<Produto>;
 
-  create(props: Restaurante, ...params: any[]): Promise<ResponseData> {
+  create(props: Produto, ...params: any[]): Promise<ResponseData> {
     let responseData = new ResponseData();
     return validate(props).then(errors => {
       if (errors.length > 0) {
         errors.forEach(function(val) {
           responseData.mensagens.push(val.value);
         });
-        responseData.status = false;
         responseData.objeto = props;
       } else {
         responseData.mensagens.push("OK!");
@@ -26,7 +25,7 @@ export class RestauranteService implements IServiceBase<Restaurante> {
       return responseData;
     });
   }
-  readOne(id: number): Promise<Restaurante> {
+  readOne(id: number): Promise<Produto> {
     let result: any = {};
     try {
       result = this.repository
@@ -38,10 +37,10 @@ export class RestauranteService implements IServiceBase<Restaurante> {
     }
     return result;
   }
-  update(props: Restaurante): Promise<Restaurante> {
+  update(props: Produto): Promise<Produto> {
     return this.repository.persist(props);
   }
-  drop(id: number): Promise<Restaurante> {
+  drop(id: number): Promise<Produto> {
     let result: any = {};
     try {
       result = this.readOne(id)
@@ -57,7 +56,8 @@ export class RestauranteService implements IServiceBase<Restaurante> {
     }
     return result;
   }
-  readAll(...params: any[]): Promise<Restaurante[]> {
-    return this.repository.find();
+  readAll(...params: any[]): Promise<Produto[]> {
+    let idCardapio = params[0];
+    return this.repository.find({ cardapio: idCardapio });
   }
 }

@@ -3,25 +3,23 @@ import { ResponseData } from "../response-data";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { OrmRepository } from "typeorm-typedi-extensions";
-import { IUser } from "./user.interface";
 import { User } from "./user.model";
 import { validate } from "class-validator";
 
 @Service()
-export class UserService implements IServiceBase<IUser, ResponseData | User> {
-  constructor( @OrmRepository(User) private repository: Repository<User>) { }
+export class UserService implements IServiceBase<User> {
+  constructor(@OrmRepository(User) private repository: Repository<User>) {}
 
-  public create(props: IUser): Promise<ResponseData> {
+  public create(props: User): Promise<ResponseData> {
     let response = new ResponseData();
     return validate(props).then(errors => {
       if (errors.length > 0) {
-        errors.forEach(function (val) {
+        errors.forEach(function(val) {
           response.mensagens.push(val.value);
         });
         response.status = false;
         response.objeto = props;
-      }
-      else {
+      } else {
         response.mensagens.push("OK!");
         response.objeto = this.repository.persist(props);
       }
@@ -41,13 +39,13 @@ export class UserService implements IServiceBase<IUser, ResponseData | User> {
     return promise;
   }
 
-  public update(props: IUser): Promise<User> {
+  public update(props: User): Promise<User> {
     return this.repository.persist(props);
   }
 
   public drop(id: number): Promise<User> {
     let user: User;
-    this.readOne(id).then((res: User) => user = res);
+    this.readOne(id).then((res: User) => (user = res));
     return this.repository.remove(user);
   }
 

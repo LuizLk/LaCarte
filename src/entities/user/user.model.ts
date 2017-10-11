@@ -1,14 +1,16 @@
 import { Column, Entity } from "typeorm";
 import { BaseEntity } from "../base-entity";
-import { Length, IsEmail, IsDate, IsNumberString, IsString } from "class-validator";
+import { Length, IsEmail, IsDate, IsNumberString, IsString, IsNotEmpty, IsOptional } from "class-validator";
 
 @Entity()
 export class User extends BaseEntity {
   @Column()
+  @IsOptional()
   @IsDate()
   dataNascimento?: Date;
 
   @Column({ unique: true })
+  @IsNotEmpty()
   @IsEmail()
   email: string;
 
@@ -25,10 +27,22 @@ export class User extends BaseEntity {
   telefone: string;
 
   @Column()
+  @IsOptional()
   @IsString()
   sobrenome?: string;
 
   @Column()
+  @IsNotEmpty()
   @IsString()
   nome: string;
+
+  @Column()
+  @IsOptional()
+  @IsString()
+  token: string;
+
+  @Column()
+  @IsOptional()
+  @IsString()
+  tokenFacebook: string;
 }

@@ -6,16 +6,16 @@ import { Type } from "class-transformer";
 
 @Entity()
 export class Mesa extends BaseEntity {
-    @Column()
-    @IsNotEmpty()
-    @IsNumber()
-    public numero: number;
+  @Column()
+  @IsNotEmpty({ message: "Número não pode ser vazio." })
+  @IsNumber({ message: "Deve ser um número do tipo inteiro." })
+  public numero: number;
 
-    @Column()
-    @IsString()
-    public qrcode: string;
+  @Column()
+  @IsString()
+  public qrcode: string;
 
-    @ManyToOne(() => Restaurante, restaurante => restaurante.mesas)
-    @Type(() => Restaurante)
-    public restaurante: Restaurante;
+  @ManyToOne(() => Restaurante, restaurante => restaurante.mesas)
+  @Type(() => Restaurante)
+  public restaurante: Restaurante;
 }

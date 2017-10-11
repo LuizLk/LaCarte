@@ -1,6 +1,6 @@
 import { IBaseEntity } from "../base-entity";
 
-export interface ICardapioItem extends IBaseEntity {
+export interface IProduto extends IBaseEntity {
     nome: string;
     descricao: string;
     valor: number;
