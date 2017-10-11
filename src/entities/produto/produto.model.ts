@@ -29,7 +29,7 @@ export class Produto extends BaseEntity {
   @Exclude()
   public ativo: boolean;
 
-  @ManyToMany(type => Cardapio)
+  @ManyToMany(type => Cardapio, cardapio => cardapio.produtos)
   @JoinTable()
   public cardapios: Cardapio[];
 

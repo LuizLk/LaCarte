@@ -34,11 +34,15 @@ export class Restaurante extends BaseEntity {
     @Exclude()
     public ativo: boolean;
 
-    @OneToMany(() => Cardapio, cardapio => cardapio.restaurante)
+    @OneToMany(type => Cardapio, cardapio => cardapio.restaurante, {
+        lazy: true
+    })
     @Type(() => Cardapio)
     public cardapios: Cardapio[];
 
-    @OneToMany(() => Mesa, mesa => mesa.restaurante)
+    @OneToMany(type => Mesa, mesa => mesa.restaurante, {
+        lazy: true
+    })
     @Type(() => Mesa)
     public mesas: Mesa[];
 }
