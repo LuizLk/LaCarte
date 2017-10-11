@@ -20,6 +20,12 @@ export class MesaPage {
 		localStorage.clear();
   }
 
+	Validar(){ //Só pra demonstração, função abaixo comentada
+		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
+    this.navCtrl.push(CardapioPage)
+  }
+
+	/*
 	Validar(){ //verifica se a mesa se encontra no banco.
 		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
     if(this.mesaBuffer.codigo === this.data.id){
@@ -28,6 +34,7 @@ export class MesaPage {
       this.showAlert();
     }
 	}
+	*/
 
 	getData(){
     this.rest.getMesa(1).subscribe(data=>
