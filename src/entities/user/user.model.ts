@@ -1,6 +1,16 @@
-import { Column, Entity } from "typeorm";
+import { Type } from "class-transformer";
+import { Pedido } from "./../pedido/pedido.model";
+import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
-import { Length, IsEmail, IsDate, IsNumberString, IsString, IsNotEmpty, IsOptional } from "class-validator";
+import {
+  Length,
+  IsEmail,
+  IsDate,
+  IsNumberString,
+  IsString,
+  IsNotEmpty,
+  IsOptional
+} from "class-validator";
 
 @Entity()
 export class User extends BaseEntity {
@@ -19,8 +29,7 @@ export class User extends BaseEntity {
   @IsNumberString()
   cpf: string;
 
-  @Column()
-  senha: string;
+  @Column() senha: string;
 
   @Column()
   @IsNumberString()
@@ -45,4 +54,8 @@ export class User extends BaseEntity {
   @IsOptional()
   @IsString()
   tokenFacebook: string;
+
+  @OneToMany(() => Pedido, pedido => pedido.user)
+  @Type(() => Pedido)
+  public pedidos: Pedido[];
 }

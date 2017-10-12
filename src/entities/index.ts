@@ -4,6 +4,6 @@ export * from './restaurante';
 export * from './mesa';
 export * from './pedido';
 export * from './cardapio';
-export * from './cardapio-item';
+export * from './produto';
 export * from './response-data';
 export * from './produto-tipo';

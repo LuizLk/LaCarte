@@ -1,0 +1,22 @@
+import { Adicional } from "./../adicional/adicional.model";
+import { ItemPedido } from "../pedido-item/pedido-item.model";
+import { Pedido } from "../pedido/pedido.model";
+import { Column, Entity, ManyToOne } from "typeorm";
+import { BaseEntity } from "../base-entity";
+import { IsNumber } from "class-validator";
+import { Type } from "class-transformer";
+
+@Entity()
+export class ItemPedidoAdicional extends BaseEntity {
+  @Column()
+  @IsNumber()
+  public quantidade: number;
+
+  @ManyToOne(type => ItemPedido, itemPedido => itemPedido.adicionais)
+  @Type(() => Pedido)
+  public itemPedido: ItemPedido;
+
+  @ManyToOne(type => Adicional, a => a.itemPedidoAdicionais)
+  @Type(() => Adicional)
+  public adicional: Adicional;
+}
