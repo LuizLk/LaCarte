@@ -17,7 +17,7 @@ export class Mesa extends BaseEntity {
   @IsString()
   public qrcode: string;
 
-  @ManyToOne(() => Restaurante, restaurante => restaurante.mesas)
+  @ManyToOne(type => Restaurante, restaurante => restaurante.mesas)
   @Type(() => Restaurante)
   public restaurante: Restaurante;
 }
