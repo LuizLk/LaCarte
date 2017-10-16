@@ -1,21 +1,29 @@
-import { Body, Param, HttpCode, JsonController, Post, Get } from 'routing-controllers';
-import { Inject } from 'typedi';
-import { IUser, User, UserService } from '../../entities/user';
+import { plainToClass } from "class-transformer";
+import {
+  Body,
+  Param,
+  HttpCode,
+  JsonController,
+  Post,
+  Get
+} from "routing-controllers";
+import { Inject } from "typedi";
+import { IUser, User, UserService } from "../../entities/user";
 
-@JsonController('/user')
+@JsonController("/user")
 export class UserController {
-
-  @Inject()
-  private userService: UserService;
+  @Inject() private userService: UserService;
 
   @Post()
   @HttpCode(201)
   public httpPost(
     @Body({
       required: true
-    }) props: IUser
-    ): Promise<User> {
-    return this.userService.create(props);
+    })
+    props: IUser
+  ): Promise<any> {
+    let user = plainToClass(User, props);
+    return this.userService.create(user);
   }
 
   @Get()
@@ -24,10 +32,7 @@ export class UserController {
   }
 
   @Get("/:id")
-  public httpGet(
-    @Param("id")
-    id: number
-    ): Promise<User> {
+  public httpGet(@Param("id") id: number): Promise<any> {
     return this.userService.readOne(id);
   }
 }

@@ -16,12 +16,16 @@ import { Exclude, Type } from "class-transformer";
 
 @Entity()
 export class Produto extends BaseEntity {
-  @Column()
+  @Column({
+    length: 50
+  })
   @IsNotEmpty()
   @IsString()
   public nome: string;
 
-  @Column()
+  @Column({
+    length: 100
+  })
   @IsNotEmpty()
   @IsString()
   public descricao: string;
@@ -30,7 +34,9 @@ export class Produto extends BaseEntity {
   @IsNumber()
   public valor: number;
 
-  @Column()
+  @Column({
+    length: 100
+  })
   @IsUrl()
   public urlImagem: string;
 
@@ -38,22 +44,22 @@ export class Produto extends BaseEntity {
   @Exclude()
   public ativo: boolean;
 
-  @ManyToMany(type => Cardapio, cardapio => cardapio.produtos)
+  @ManyToMany(type => Cardapio)
   @JoinTable()
   public cardapios: Cardapio[];
 
-  @ManyToOne(type => TipoProduto, tipoProduto => tipoProduto.produtos)
+  @ManyToOne(type => (type = TipoProduto), tipoProduto => tipoProduto.produtos)
   @Type(() => TipoProduto)
   public tipoProduto: TipoProduto;
 
   @OneToMany(
-    type => ProdutoAdicionais,
+    type => (type = ProdutoAdicionais),
     produtoAdicionais => produtoAdicionais.produto
   )
   @Type(() => ProdutoAdicionais)
   public produtosAdicionais: ProdutoAdicionais[];
 
-  @OneToMany(type => ItemPedido, itemPedido => itemPedido.produto)
+  @OneToMany(type => (type = ItemPedido), itemPedido => itemPedido.produto)
   @Type(() => ItemPedido)
   public itensPedido: ItemPedido[];
 }

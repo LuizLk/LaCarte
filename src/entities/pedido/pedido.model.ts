@@ -17,11 +17,11 @@ export class Pedido extends BaseEntity {
   @IsBoolean()
   public fechado: boolean;
 
-  @ManyToOne(type => User, user => user.pedidos)
+  @ManyToOne(type => type = User, user => user.pedidos)
   @Type(() => User)
   public user: User;
 
-  @OneToMany(type => ItemPedido, item => item.pedido)
+  @OneToMany(type => type = ItemPedido, item => item.pedido)
   @Type(() => ItemPedido)
   public itens: ItemPedido[];
 }

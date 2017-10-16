@@ -12,11 +12,11 @@ export class ItemPedidoAdicional extends BaseEntity {
   @IsNumber()
   public quantidade: number;
 
-  @ManyToOne(type => ItemPedido, itemPedido => itemPedido.adicionais)
+  @ManyToOne(type => type = ItemPedido, itemPedido => itemPedido.adicionais)
   @Type(() => Pedido)
   public itemPedido: ItemPedido;
 
-  @ManyToOne(type => Adicional, a => a.itemPedidoAdicionais)
+  @ManyToOne(type => type = Adicional, a => a.itemPedidoAdicionais)
   @Type(() => Adicional)
   public adicional: Adicional;
 }

@@ -18,13 +18,17 @@ export class Cliente extends BaseEntity {
   @IsEmail()
   public email: string;
 
-  @Column()
+  @Column({
+    length: 20
+  })
   @Length(14, 14)
   @IsNotEmpty()
   @IsNumberString()
   public cnpj: string;
 
-  @Column()
+  @Column({
+    length: 50
+  })
   @IsNotEmpty()
   public senha: string;
 
@@ -35,7 +39,9 @@ export class Cliente extends BaseEntity {
   @IsNumberString()
   public telefone: string;
 
-  @Column()
+  @Column({
+    length: 100
+  })
   @IsNotEmpty()
   @IsString()
   public nome: string;

@@ -1,4 +1,4 @@
-import { Adicional } from '../adicionais/adicionais.model';
+import { Adicional } from './../adicional/adicional.model';
 import { Produto } from './../produto/produto.model';
 import { TipoProduto } from "../produto-tipo";
 import { BaseEntity } from "../base-entity";
@@ -12,11 +12,11 @@ export class ProdutoAdicionais extends BaseEntity {
   @IsNumber()
   public valor: number;
 
-  @ManyToOne(type => Produto, produto => produto.produtosAdicionais)
+  @ManyToOne(type => type = Produto, produto => produto.produtosAdicionais)
   @Type(() => Produto)
   public produto: Produto;
 
-  @ManyToOne(type => Adicional, adicionais => adicionais.produtosAdicionais)
+  @ManyToOne(type => type = Adicional, adicionais => adicionais.produtosAdicionais)
   @Type(() => TipoProduto)
   public adicionais: Adicional;
 }

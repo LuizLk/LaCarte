@@ -7,19 +7,21 @@ import { IsString, IsNotEmpty } from "class-validator";
 
 @Entity()
 export class Adicional extends BaseEntity {
-  @Column()
+  @Column({
+    length: 20
+  })
   @IsNotEmpty()
   @IsString()
   public nome: string;
 
   @OneToMany(
-    type => ProdutoAdicionais,
+    type => type = ProdutoAdicionais,
     produtoAdicionais => produtoAdicionais.adicionais
   )
   @Type(() => ProdutoAdicionais)
   public produtosAdicionais: ProdutoAdicionais[];
 
-  @OneToMany(type => ItemPedidoAdicional, i => i.adicional)
+  @OneToMany(type => type = ItemPedidoAdicional, i => i.adicional)
   @Type(() => ProdutoAdicionais)
   public itemPedidoAdicionais: ItemPedidoAdicional[];
 }

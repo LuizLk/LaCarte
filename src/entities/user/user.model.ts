@@ -35,12 +35,16 @@ export class User extends BaseEntity {
   @IsNumberString()
   telefone: string;
 
-  @Column()
+  @Column({
+    length:100
+  })
   @IsOptional()
   @IsString()
   sobrenome?: string;
 
-  @Column()
+  @Column({
+    length:20
+  })
   @IsNotEmpty()
   @IsString()
   nome: string;

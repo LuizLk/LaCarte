@@ -10,7 +10,7 @@ import { validate } from "class-validator";
 export class UserService implements IServiceBase<User> {
   constructor(@OrmRepository(User) private repository: Repository<User>) {}
 
-  public create(props: User): Promise<ResponseData> {
+  public create(props: User): Promise<User | ResponseData> {
     let response = new ResponseData();
     return validate(props).then(errors => {
       if (errors.length > 0) {

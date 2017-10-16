@@ -9,22 +9,30 @@ import { Exclude, Type } from "class-transformer";
 
 @Entity()
 export class Restaurante extends BaseEntity {
-  @Column()
+  @Column({
+    length: 100
+  })
   @IsNotEmpty()
   @IsString()
   public nome: string;
 
-  @Column()
+  @Column({
+    length: 150
+  })
   @IsNotEmpty()
   @IsString()
   public descricao: string;
 
-  @Column()
+  @Column({
+    length: 150
+  })
   @IsNotEmpty()
   @IsString()
   public endereco: string;
 
-  @Column()
+  @Column({
+    length: 20
+  })
   @IsNumberString()
   public telefone: string;
 
@@ -36,17 +44,17 @@ export class Restaurante extends BaseEntity {
   @Exclude()
   public ativo: boolean;
 
-  @ManyToOne(type => Cliente, c => c.restaurantes)
+  @ManyToOne(type => type = Cliente, c => c.restaurantes)
   @Type(() => Cliente)
   public cliente: Cliente;
 
-  @OneToMany(type => Cardapio, cardapio => cardapio.restaurante, {
+  @OneToMany(type => type = Cardapio, cardapio => cardapio.restaurante, {
     lazy: true
   })
   @Type(() => Cardapio)
   public cardapios: Cardapio[];
 
-  @OneToMany(type => Mesa, mesa => mesa.restaurante, {
+  @OneToMany(type => type = Mesa, mesa => mesa.restaurante, {
     lazy: true
   })
   @Type(() => Mesa)

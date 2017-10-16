@@ -9,8 +9,8 @@ import { ResponseData } from "../response-data";
 
 @Service()
 export class RestauranteService implements IServiceBase<Restaurante> {
-  @OrmRepository(Restaurante) private repository: Repository<Restaurante>;
-  @OrmRepository(Cliente) private repository: Repository<Restaurante>;
+  @OrmRepository(Restaurante) private restauranteRepository: Repository<Restaurante>;
+  @OrmRepository(Cliente) private clienteRepository: Repository<Restaurante>;
 
   create(props: Restaurante, ...params: any[]): Promise<ResponseData> {
     let idCliente = params[0];
@@ -25,7 +25,7 @@ export class RestauranteService implements IServiceBase<Restaurante> {
       } else {
         responseData.mensagens.push("OK!");
 
-        responseData.objeto = this.repository.persist(props);
+        responseData.objeto = this.restauranteRepository.persist(props);
       }
       return responseData;
     });
@@ -33,7 +33,7 @@ export class RestauranteService implements IServiceBase<Restaurante> {
   readOne(id: number): Promise<Restaurante> {
     let result: any = {};
     try {
-      result = this.repository
+      result = this.restauranteRepository
         .findOneById(id)
         .then()
         .catch(res => (result = res));
@@ -43,7 +43,7 @@ export class RestauranteService implements IServiceBase<Restaurante> {
     return result;
   }
   update(props: Restaurante): Promise<Restaurante> {
-    return this.repository.persist(props);
+    return this.restauranteRepository.persist(props);
   }
   drop(id: number): Promise<Restaurante> {
     let result: any = {};
@@ -52,7 +52,7 @@ export class RestauranteService implements IServiceBase<Restaurante> {
         .then(res => (result = res))
         .catch(res => (result = res));
 
-      result = this.repository
+      result = this.restauranteRepository
         .remove(result)
         .then()
         .catch(res => (result = res));
@@ -62,6 +62,6 @@ export class RestauranteService implements IServiceBase<Restaurante> {
     return result;
   }
   readAll(...params: any[]): Promise<Restaurante[]> {
-    return this.repository.find();
+    return this.restauranteRepository.find();
   }
 }

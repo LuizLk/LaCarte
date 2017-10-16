@@ -4,7 +4,21 @@ import "es6-shim";
 import { Container } from 'typedi';
 import { createConnection, useContainer } from 'typeorm';
 import { config } from '../config';
-import { BaseEntity, User, Cardapio } from '../entities';
+import {
+  BaseEntity,
+  User,
+  Cardapio,
+  Adicional,
+  Cliente,
+  Mesa,
+  Pedido,
+  ItemPedido,
+  ItemPedidoAdicional,
+  Produto,
+  ProdutoAdicionais,
+  TipoProduto,
+  Restaurante
+} from '../entities';
 import { app } from './app';
 
 useContainer(Container);
@@ -16,7 +30,17 @@ createConnection({
   entities: [
     BaseEntity,
     User,
-    Cardapio
+    Adicional,
+    ItemPedidoAdicional,
+    Pedido,
+    ItemPedido,
+    Produto,
+    ProdutoAdicionais,
+    TipoProduto,
+    Mesa,
+    Cliente,
+    Cardapio,
+    Restaurante
   ]
 }).then(
   () => http

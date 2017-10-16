@@ -11,7 +11,9 @@ export class Mesa extends BaseEntity {
   @IsNumber({ message: "Deve ser um número do tipo inteiro." })
   public numero: number;
 
-  @Column()
+  @Column({
+    length: 100
+  })
   @IsString()
   public qrcode: string;
 

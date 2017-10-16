@@ -12,7 +12,7 @@ export default class Auth {
     private ExtractJwt = passportJWT.ExtractJwt;
     private Strategy = passportJWT.Strategy;
     private params = {
-        secretOrKey: cfg.jwtSecret,
+        secretOrKey: config.jwt.jwtSecret,
         jwtFromRequest: this.ExtractJwt.fromAuthHeader()
     };
 
