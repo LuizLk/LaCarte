@@ -7,3 +7,4 @@ export * from './cardapio';
 export * from './produto';
 export * from './response-data';
 export * from './produto-tipo';
+export * from './cliente';

@@ -1,7 +1,9 @@
-import { Body, Param, HttpCode, JsonController, Post, Get } from 'routing-controllers';
+import { Body, Param, HttpCode, JsonController, Post, Get, UseBefore } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { ICardapio, Cardapio, CardapioService } from '../../entities/cardapio';
+import Auth from '../../config/passport';
 
+@UseBefore(() => Auth.authenticate())
 @JsonController('/cardapio')
 export class CardapioController {
 

@@ -16,28 +16,36 @@ export class Cliente extends BaseEntity {
   @Column({ unique: true })
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  public email: string;
 
   @Column()
   @Length(14, 14)
+  @IsNotEmpty()
   @IsNumberString()
-  cnpj: string;
-
-  @Column() senha: string;
+  public cnpj: string;
 
   @Column()
+  @IsNotEmpty()
+  public senha: string;
+
+  @Column({
+    nullable: true
+  })
+  @IsOptional()
   @IsNumberString()
-  telefone: string;
+  public telefone: string;
 
   @Column()
   @IsNotEmpty()
   @IsString()
-  nome: string;
+  public nome: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   @IsOptional()
   @IsString()
-  token: string;
+  public token: string;
 
   @OneToMany(() => Restaurante, r => r.cliente, {
     lazy: true

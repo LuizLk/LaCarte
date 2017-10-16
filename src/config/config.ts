@@ -19,5 +19,9 @@ export const config: IConfig = {
       database: "test",
     },
     dropSchemaOnConnection: true
+  },
+  jwt: {
+    jwtSecret: "l@Cart3A$$PiE$%T/s",
+    jwtSession: { session: false }
   }
 };
