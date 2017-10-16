@@ -73,11 +73,7 @@ export class PerfilPage {
     prompt.present();
   }
 
-  excluir(){    // Função para alterar dados do usuarios
-    console.log(this.user);
-    this.rest.deleteUser(this.user);
-    this.navCtrl.push(EditarPage);
-  }
+
 
   mudarPage(){
     this.navCtrl.push(EditarPage);

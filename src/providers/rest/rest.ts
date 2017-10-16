@@ -10,8 +10,8 @@ import "rxjs/add/operator/map";
 
 export class RestProvider {
 
-  //private apiUrl = "http://lacarte-api.azurewebsites.net/"; // link para acessa o banco de dados.
-  private apiUrl = "http://172.16.108.1:3000"; // link para acessa o banco de dados.
+  private apiUrl = "http://lacarte-api.azurewebsites.net/"; // link para acessa o banco de dados.
+  // private apiUrl = "http://172.16.108.1:3000"; // link para acessa o banco de dados.
 
   constructor(public http: HttpClient) {
     console.log("Hello RestProvider Provider");

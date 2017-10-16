@@ -40,7 +40,7 @@ export class LoginPage {
       this.navCtrl.push(PerfilPage)
 
     }else{
-      this.showAlertOFF();
+      this.showAlert();
     }
   }
 
