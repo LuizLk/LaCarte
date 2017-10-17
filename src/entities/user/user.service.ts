@@ -1,9 +1,9 @@
 import { IServiceBase } from "../base-entity";
-import { ResponseData } from "../response-data";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { OrmRepository } from "typeorm-typedi-extensions";
 import { User } from "./user.model";
+import { ResponseData } from "../response-data";
 import { validate } from "class-validator";
 
 @Service()
@@ -39,6 +39,18 @@ export class UserService implements IServiceBase<User> {
     return promise;
   }
 
+  public readOneByEmail(email: string): Promise<User | ResponseData> {
+    let promise = new Promise<User | ResponseData>((resolve, reject) => {
+      resolve(this.repository.findOne({email: email}));
+      let response = new ResponseData();
+      response.mensagens.push("email não encontrado.");
+      response.status = false;
+      reject(response);
+    });
+
+    return promise;
+  }
+
   public update(props: User): Promise<User> {
     return this.repository.persist(props);
   }
@@ -52,4 +64,8 @@ export class UserService implements IServiceBase<User> {
   public readAll(): Promise<User[]> {
     return this.repository.find();
   }
+
+  findOneByToken(token: string): Promise<User> {
+    return this.repository.findOne({ token: token });
+}
 }

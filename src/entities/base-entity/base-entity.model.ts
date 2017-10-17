@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   AbstractEntity,
   CreateDateColumn,
@@ -13,7 +14,15 @@ export abstract class BaseEntity {
     generated: true
   })
   public id: number;
-  @CreateDateColumn() public createdAt?: Date;
-  @UpdateDateColumn() public updatedAt?: Date;
-  @VersionColumn() public version?: number;
+
+  @CreateDateColumn()
+  @Exclude()
+  public createdAt?: Date;
+
+  @UpdateDateColumn()
+  @Exclude()
+  public updatedAt?: Date;
+  @VersionColumn()
+  @Exclude()
+  public version?: number;
 }

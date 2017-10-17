@@ -11,7 +11,7 @@ import {
   JoinTable,
   OneToMany
 } from "typeorm";
-import { IsString, IsNotEmpty, IsNumber, IsUrl } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
 import { Exclude, Type } from "class-transformer";
 
 @Entity()
@@ -24,9 +24,10 @@ export class Produto extends BaseEntity {
   public nome: string;
 
   @Column({
-    length: 100
+    length: 100,
+    nullable: true
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   public descricao: string;
 
@@ -35,12 +36,14 @@ export class Produto extends BaseEntity {
   public valor: number;
 
   @Column({
-    length: 100
+    length: 256
   })
   @IsUrl()
   public urlImagem: string;
 
-  @Column()
+  @Column({
+    default: true
+  })
   @Exclude()
   public ativo: boolean;
 

@@ -3,13 +3,15 @@ import { Produto } from "../produto/produto.model";
 import { Pedido } from "../pedido/pedido.model";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
-import { IsNumber } from "class-validator";
+import { IsNumber, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @Entity()
 export class ItemPedido extends BaseEntity {
-  @Column()
-  @IsNumber()
+  @Column({
+    type: 'int'
+  })
+  @IsInt()
   public quantidade: number;
 
   @Column({

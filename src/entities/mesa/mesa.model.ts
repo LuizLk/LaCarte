@@ -6,7 +6,9 @@ import { Type } from "class-transformer";
 
 @Entity()
 export class Mesa extends BaseEntity {
-  @Column()
+  @Column({
+    unique: true
+  })
   @IsNotEmpty({ message: "Número não pode ser vazio." })
   @IsNumber({ message: "Deve ser um número do tipo inteiro." })
   public numero: number;

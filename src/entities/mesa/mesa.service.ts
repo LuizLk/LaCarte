@@ -15,7 +15,6 @@ export class MesaService implements IServiceBase<Mesa> {
 
   create(props: Mesa, ...params: any[]): Promise<ResponseData> {
     let idRestaurante = params[0];
-
     let responseData = new ResponseData();
     return validate(props).then(errors => {
       if (errors.length > 0) {
@@ -37,6 +36,7 @@ export class MesaService implements IServiceBase<Mesa> {
         //verifica se não ocorreu erro ao buscar o restaurante
         if (responseData.mensagens.length == 0) {
           responseData.mensagens.push("OK!");
+          props.restaurante = idRestaurante;
           responseData.objeto = this.mesaRepository.persist(props);
         }
       }

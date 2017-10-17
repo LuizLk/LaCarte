@@ -19,9 +19,10 @@ export class Cliente extends BaseEntity {
   public email: string;
 
   @Column({
-    length: 20
+    length: 20,
+    unique: true
   })
-  @Length(14, 14)
+  @Length(14, 20)
   @IsNotEmpty()
   @IsNumberString()
   public cnpj: string;
@@ -53,7 +54,7 @@ export class Cliente extends BaseEntity {
   @IsString()
   public token: string;
 
-  @OneToMany(() => Restaurante, r => r.cliente, {
+  @OneToMany((type) => Restaurante, r => r.cliente, {
     lazy: true
   })
   @Type(() => Restaurante)

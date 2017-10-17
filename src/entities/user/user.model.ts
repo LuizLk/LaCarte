@@ -14,7 +14,9 @@ import {
 
 @Entity()
 export class User extends BaseEntity {
-  @Column()
+  @Column({
+    nullable: true
+  })
   @IsOptional()
   @IsDate()
   dataNascimento?: Date;
@@ -24,7 +26,10 @@ export class User extends BaseEntity {
   @IsEmail()
   email: string;
 
-  @Column()
+  @Column({
+    unique: true,
+    length: 11
+  })
   @Length(11, 11)
   @IsNumberString()
   cpf: string;
@@ -36,14 +41,14 @@ export class User extends BaseEntity {
   telefone: string;
 
   @Column({
-    length:100
+    length: 100
   })
   @IsOptional()
   @IsString()
   sobrenome?: string;
 
   @Column({
-    length:20
+    length: 20
   })
   @IsNotEmpty()
   @IsString()

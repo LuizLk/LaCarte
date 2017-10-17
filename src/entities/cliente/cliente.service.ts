@@ -55,7 +55,7 @@ export class ClienteService implements IServiceBase<Cliente> {
         }
         return result;
     }
-    readAll(...params: any[]): Promise<Cliente[]> {
+    readAll(): Promise<Cliente[]> {
         return this.repository.find();
     }
     findOneByToken(token: string): Promise<Cliente> {

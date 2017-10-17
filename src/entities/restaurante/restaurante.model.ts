@@ -17,7 +17,8 @@ export class Restaurante extends BaseEntity {
   public nome: string;
 
   @Column({
-    length: 150
+    length: 150,
+    nullable: true
   })
   @IsNotEmpty()
   @IsString()
@@ -38,7 +39,7 @@ export class Restaurante extends BaseEntity {
 
   @Column({ nullable: true })
   @IsUrl()
-  public site?: string;
+  public site: string;
 
   @Column()
   @Exclude()

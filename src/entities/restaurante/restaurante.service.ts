@@ -1,5 +1,5 @@
 import { Restaurante } from "./restaurante.model";
-import { Cliente } from "../cliente";
+// import { Cliente } from "../cliente";
 import { Service } from "typedi";
 import { IServiceBase } from "../base-entity";
 import { OrmRepository } from "typeorm-typedi-extensions";
@@ -10,7 +10,7 @@ import { ResponseData } from "../response-data";
 @Service()
 export class RestauranteService implements IServiceBase<Restaurante> {
   @OrmRepository(Restaurante) private restauranteRepository: Repository<Restaurante>;
-  @OrmRepository(Cliente) private clienteRepository: Repository<Restaurante>;
+  // @OrmRepository(Cliente) private clienteRepository: Repository<Restaurante>;
 
   create(props: Restaurante, ...params: any[]): Promise<ResponseData> {
     let idCliente = params[0];
@@ -19,13 +19,15 @@ export class RestauranteService implements IServiceBase<Restaurante> {
       if (errors.length > 0) {
         errors.forEach(function (val) {
           responseData.mensagens.push(val.value);
+          idCliente.mensagens.push(val.value);
         });
         responseData.status = false;
         responseData.objeto = props;
       } else {
         responseData.mensagens.push("OK!");
-
+        props.cliente = idCliente;
         responseData.objeto = this.restauranteRepository.persist(props);
+        // idCliente.objeto = this.clienteRepository.persist(props);
       }
       return responseData;
     });

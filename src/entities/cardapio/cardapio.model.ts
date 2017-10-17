@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Produto } from './../produto/produto.model';
+import { Column, Entity, ManyToOne, ManyToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { Restaurante } from "../restaurante";
-// import { Produto } from "../produto";
 import { IsString, IsNotEmpty } from "class-validator";
 
 @Entity("cardapios")
@@ -14,19 +14,22 @@ export class Cardapio extends BaseEntity {
   public nome: string;
 
   @Column({
-    length: 120
+    length: 250,
+    nullable: true
   })
   @IsNotEmpty()
   @IsString()
   public descricao: string;
 
-  @Column() public ativo: boolean;
+  @Column({
+    default: true
+  }) public ativo: boolean;
 
   @ManyToOne(type => (type = Restaurante), restaurante => restaurante.cardapios)
   public restaurante: Restaurante;
 
-  // @ManyToMany(type => (type = Produto), produtos => produtos.cardapios, {
-  //   lazy: true
-  // })
-  // public produtos: Produto[];
+  @ManyToMany(type => (type = Produto), produtos => produtos.cardapios, {
+    lazy: true
+  })
+  public produtos: Produto[];
 }

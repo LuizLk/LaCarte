@@ -8,7 +8,10 @@ import { Type } from "class-transformer";
 
 @Entity()
 export class ProdutoAdicionais extends BaseEntity {
-  @Column()
+  @Column({
+    precision: 10,
+    scale: 2
+  })
   @IsNumber()
   public valor: number;
 
