@@ -7,8 +7,8 @@ export class Restaurante {
 }
 
 export class Mesa {
-	restaurante: number; // relativo a qual restaurante
-	numero: number; // identificação da mesa pelo usuario
-	codigo: number; // metodo 1 de achar a mesa no banco de dados
-	qrcode: string; // metodo 2 de achar a mesa no banco de dados
+	//restaurante: number; // relativo a qual restaurante
+	numeroMesa: number; // identificação da mesa pelo usuario
+	qrCode: number; // metodo 1 de achar a mesa no banco de dados
+	id: number; // metodo 2 de achar a mesa no banco de dados
 }

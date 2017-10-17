@@ -5,8 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { CadastPage } from '../cadast/cadast';
-
-
+import { SqliteServe } from '../../class/SqliteServe';
 
 @IonicPage()
 @Component({
@@ -63,7 +62,7 @@ export class LoginPage {
     alert.present();
   }
 
-  showAlertOn() { // alerta para erro de login
+  showAlertOn() { // alerta para inicio do uso do app
     let alert = this.alertCtrl.create({
       title: 'La Carte',
       subTitle: 'Bem vindo ao La Carte! Desejamos uma boa refeição!',

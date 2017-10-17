@@ -12,29 +12,33 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class MesaPage {
 	
-	public mesaBuffer = new Mesa();
+	public mesaData = new Mesa();
 	public mesa ={};
 	public data = JSON.parse(localStorage.getItem('mesaData'));
+	mesaBuffer = {"numeroMesa": 0, "qrCode":0, "id":0};
 
+	responseData: any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider, public alertCtrl: AlertController) {
-		localStorage.clear();
-  }
-
-	Validar(){ //Só pra demonstração, função abaixo comentada
-		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
-    this.navCtrl.push(CardapioPage)
+		//localStorage.clear();
   }
 
 	/*
+	Validar(){
+		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
+    this.navCtrl.push(CardapioPage)
+	}*/
+
 	Validar(){ //verifica se a mesa se encontra no banco.
 		localStorage.setItem('mesaData',JSON.stringify(this.mesa));
-    if(this.mesaBuffer.codigo === this.data.id){
+		console.log(this.data.id);
+		console.log(this.mesaData.id);
+    if(this.mesaData.id === this.data.id){
       this.navCtrl.push(CardapioPage)
     }else{
       this.showAlert();
     }
 	}
-	*/
 
 	getData(){
     this.rest.getMesa(1).subscribe(data=>
