@@ -3,7 +3,7 @@ import { ManyToOne } from "typeorm";
 import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { Cardapio } from "../cardapio";
-import { Mesa } from "../mesa";
+import { Mesa } from "../mesa/mesa.model";
 import { IsString, IsNotEmpty, IsNumberString, IsUrl } from "class-validator";
 import { Exclude, Type } from "class-transformer";
 

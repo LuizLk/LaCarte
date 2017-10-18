@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne } from "typeorm";
-import { BaseEntity } from "../base-entity";
 import { Restaurante } from "../restaurante";
+import { Pedido } from '../pedido/pedido.model';
+import { Column, Entity, ManyToOne, OneToMany} from 'typeorm';
+import { BaseEntity } from "../base-entity";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -18,6 +19,10 @@ export class Mesa extends BaseEntity {
   })
   @IsString()
   public qrcode: string;
+
+  @OneToMany(type => Pedido, pedido => pedido.mesa)
+  @Type(() => Pedido)
+  public pedidos: Pedido[];
 
   @ManyToOne(type => Restaurante, restaurante => restaurante.mesas)
   @Type(() => Restaurante)

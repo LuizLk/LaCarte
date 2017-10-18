@@ -24,7 +24,7 @@ export class CardapioController {
       required: true
     })
     props: ICardapio
-  ): Promise<Cardapio> {
+  ): Promise<Cardapio | any> {
     let cardapio = plainToClass(Cardapio, props);
     return this.cardapioService.create(cardapio);
   }
