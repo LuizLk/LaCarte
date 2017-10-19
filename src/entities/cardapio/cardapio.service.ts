@@ -60,6 +60,7 @@ export class CardapioService implements IServiceBase<Cardapio> {
     return this.repository.persist(props);
   }
 
+  //funcao modificada
   public drop(id: number): Promise<Cardapio> {
     let cardapio: Cardapio;
     this.readOne(id).then((res: Cardapio) => (cardapio = res));
