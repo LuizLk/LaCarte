@@ -1,3 +1,4 @@
+import { Restaurante } from '../restaurante';
 import { IBaseEntity } from "../base-entity";
 
 export interface ICliente extends IBaseEntity {
@@ -5,4 +6,7 @@ export interface ICliente extends IBaseEntity {
   cnpj: string;
   senha: string;
   telefone: string;
+  email: string;
+  token: string;
+  restaurantes: Restaurante[];
 }
