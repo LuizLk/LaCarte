@@ -35,7 +35,6 @@ export class UserService implements IServiceBase<User> {
       response.status = false;
       reject(response);
     });
-
     return promise;
   }
 

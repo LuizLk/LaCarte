@@ -35,4 +35,9 @@ export class UserController {
   public httpGet(@Param("id") id: number): Promise<any> {
     return this.userService.readOne(id);
   }
+
+  @Get("/email/:email")
+  public httpGetEmail(@Param("email") email: string): Promise<any> {
+    return this.userService.readOneByEmail(email);
+  }
 }
