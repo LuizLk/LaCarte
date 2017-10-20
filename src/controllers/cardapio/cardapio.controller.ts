@@ -35,7 +35,7 @@ export class CardapioController {
   }
 
   @Get("/:id")
-  public httpGet(@Param("id") id: number): Promise<Cardapio> {
+  public httpGet(@Param("id") id: number): Promise<any> {
     return this.cardapioService.readOne(id);
   }
 }
