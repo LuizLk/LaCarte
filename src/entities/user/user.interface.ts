@@ -1,4 +1,5 @@
 import { IBaseEntity } from "../../entities/base-entity";
+import { Pedido } from "./../pedido/pedido.model"
 
 export interface IUser extends IBaseEntity {
   dataNascimento?: Date;
@@ -8,4 +9,8 @@ export interface IUser extends IBaseEntity {
   telefone: string;
   sobrenome?: string;
   nome: string;
+  token: string;
+  tokenFacebook: string;
+  pedidos: Pedido[];
 }
+
