@@ -2,7 +2,7 @@
   "name": "type-orm-example",
   "version": "1.0.0",
   "description": "Example typeorm project",
-  "main": "src/bin/www.ts",
+  "main": "/src/bin/www.ts",
   "scripts": {
     "start": "nodemon --exec ts-node ./src/bin/www.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

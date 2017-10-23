@@ -10,12 +10,16 @@ import {
 } from "routing-controllers";
 import { Inject } from "typedi";
 import { IUser, User, UserService } from "../../entities/user";
+// import Auth from "../../config/passport";
+
+
 let bcrypt = require("bcrypt");
 let compression = require("compression");
 const saltRounds = 0;
 const myPlaintextPassword = "123"; //minha senha
 const someOtherPlaintextPassword = '1234'; //senha a ser testada
 
+// @UseBefore(() => Auth.authenticate())
 @JsonController("/user")
 export class UserController {
   @Inject() private userService: UserService;
