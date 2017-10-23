@@ -10,7 +10,6 @@ import {
 } from "routing-controllers";
 import { Inject } from "typedi";
 import { IUser, User, UserService } from "../../entities/user";
-
 let bcrypt = require("bcrypt");
 let compression = require("compression");
 const saltRounds = 0;

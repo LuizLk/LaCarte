@@ -11,14 +11,20 @@ export const config: IConfig = {
       // port: 3306,
       // type: 'mysql',
       // username: 'bd957709ee8ba0'
+      // type: "postgres",
+      // host: "localhost",
+      // port: 5432,
+      // username: "postgres",
+      // password: "123456",
+      // database: "test",
       type: "postgres",
-      host: "localhost",
+      host: "stampy.db.elephantsql.com",
       port: 5432,
-      username: "postgres",
-      password: "123456",
-      database: "test",
+      username: "gxiubqwv",
+      password: "Eor0v0XVSaO5EkcKrqGwSL2tlWo_huxc",
+      database: "gxiubqwv",
     },
-    dropSchemaOnConnection: false
+    dropSchemaOnConnection: true
   },
   jwt: {
     jwtSecret: "l@Cart3A$$PiE$%T/s",
