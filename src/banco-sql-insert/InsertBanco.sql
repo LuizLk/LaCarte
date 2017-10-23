@@ -47,3 +47,44 @@ INSERT INTO public.produto(
             nome, descricao, valor, "urlImagem", ativo, "createdAt",
             "updatedAt", version, "tipoProduto")
     VALUES ('sorvete', '3 sabores', 5.00, 'www.sorvete.com', true,  '12-12-2017' , '12-12-2017', 1, 3);
+
+INSERT INTO public.adicional(
+            nome, "createdAt", "updatedAt", version)
+    VALUES ('queijo', '12-12-2017' , '12-12-2017', 1);
+
+INSERT INTO public.adicional(
+            nome, "createdAt", "updatedAt", version)
+    VALUES ('bacon', '12-12-2017' , '12-12-2017', 1);
+
+INSERT INTO public.pedido(
+            "valorTotal", fechado, "createdAt", "updatedAt", version,
+            "user", mesa)
+    VALUES (16.00, false,  '12-12-2017' , '12-12-2017', 1,
+            1, 1);
+
+INSERT INTO public.produto_adicionais(
+            valor, "createdAt", "updatedAt", version, produto, adicionais)
+    VALUES (2.00, '12-12-2017' , '12-12-2017', 1, 1, 1);
+
+INSERT INTO public.cardapios(
+            nome, descricao, ativo,  "createdAt", "updatedAt", version,
+            restaurante)
+    VALUES ('cardapio da casa', 'todos os produtos', true, '12-12-2017' , '12-12-2017', 1,
+            1);
+
+INSERT INTO public.produto_cardapios_cardapios_id(
+            "produtoId", "cardapiosId")
+    VALUES (1, 1);
+
+INSERT INTO public.item_pedido(
+            quantidade, "valorDesconto", "createdAt", "updatedAt", version,
+            pedido, produto)
+    VALUES (1, 0.0, '12-12-2017' , '12-12-2017', 1,
+            1, 1);
+
+INSERT INTO public.item_pedido_adicional(
+            quantidade,  "createdAt", "updatedAt", version, "itemPedido",
+            adicional)
+    VALUES (1, '12-12-2017' , '12-12-2017', 1, 1,
+            1);
+
