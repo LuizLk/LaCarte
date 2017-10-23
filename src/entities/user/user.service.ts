@@ -29,7 +29,7 @@ export class UserService implements IServiceBase<User> {
 
   public readOne(id: number): Promise<User | ResponseData> {
     let promise = new Promise<User | ResponseData>((resolve, reject) => {
-      resolve(this.repository.findOneById(id));
+      resolve(this.repository.findOneById(id))
       let response = new ResponseData();
       response.mensagens.push("Id não encontrado.");
       response.status = false;

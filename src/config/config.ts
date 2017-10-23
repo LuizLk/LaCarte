@@ -24,7 +24,7 @@ export const config: IConfig = {
       password: "Eor0v0XVSaO5EkcKrqGwSL2tlWo_huxc",
       database: "gxiubqwv",
     },
-    dropSchemaOnConnection: true
+    dropSchemaOnConnection: false
   },
   jwt: {
     jwtSecret: "l@Cart3A$$PiE$%T/s",
