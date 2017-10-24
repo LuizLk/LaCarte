@@ -1,5 +1,7 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-tslib_1.__exportStar(require("./pedido.model"), exports);
-tslib_1.__exportStar(require("./pedido.service"), exports);
+__export(require("./pedido.model"));
+__export(require("./pedido.service"));

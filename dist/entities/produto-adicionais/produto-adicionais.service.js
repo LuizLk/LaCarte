@@ -1,55 +1,62 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var produto_adicionais_model_1 = require("./produto-adicionais.model");
-var typedi_1 = require("typedi");
-var typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
-var typeorm_1 = require("typeorm");
-var ProdutoAdicionaisService = (function () {
-    function ProdutoAdicionaisService() {
-    }
-    ProdutoAdicionaisService.prototype.create = function (props) {
+const produto_adicionais_model_1 = require("./produto-adicionais.model");
+const typedi_1 = require("typedi");
+const typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
+const typeorm_1 = require("typeorm");
+let ProdutoAdicionaisService = class ProdutoAdicionaisService {
+    create(props) {
         return this.repository.persist(props);
-    };
-    ProdutoAdicionaisService.prototype.readOne = function (id) {
-        var result = {};
+    }
+    readOne(id) {
+        let result = {};
         try {
             result = this.repository
                 .findOneById(id)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    ProdutoAdicionaisService.prototype.update = function (props) {
+    }
+    update(props) {
         return this.repository.persist(props);
-    };
-    ProdutoAdicionaisService.prototype.drop = function (id) {
-        var result = {};
+    }
+    drop(id) {
+        let result = {};
         try {
             result = this.readOne(id)
-                .then(function (res) { return (result = res); })
-                .catch(function (res) { return (result = res); });
+                .then(res => (result = res))
+                .catch(res => (result = res));
             result = this.repository.remove(result)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    ProdutoAdicionaisService.prototype.readAll = function () {
+    }
+    readAll() {
         return this.repository.find();
-    };
-    tslib_1.__decorate([
-        typeorm_typedi_extensions_1.OrmRepository(produto_adicionais_model_1.ProdutoAdicionais),
-        tslib_1.__metadata("design:type", typeorm_1.Repository)
-    ], ProdutoAdicionaisService.prototype, "repository", void 0);
-    ProdutoAdicionaisService = tslib_1.__decorate([
-        typedi_1.Service()
-    ], ProdutoAdicionaisService);
-    return ProdutoAdicionaisService;
-}());
+    }
+};
+__decorate([
+    typeorm_typedi_extensions_1.OrmRepository(produto_adicionais_model_1.ProdutoAdicionais),
+    __metadata("design:type", typeorm_1.Repository)
+], ProdutoAdicionaisService.prototype, "repository", void 0);
+ProdutoAdicionaisService = __decorate([
+    typedi_1.Service()
+], ProdutoAdicionaisService);
 exports.ProdutoAdicionaisService = ProdutoAdicionaisService;

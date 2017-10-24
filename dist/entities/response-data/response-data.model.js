@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ResponseData = (function () {
-    function ResponseData() {
+class ResponseData {
+    constructor() {
         this.status = true;
     }
-    return ResponseData;
-}());
+}
 exports.ResponseData = ResponseData;

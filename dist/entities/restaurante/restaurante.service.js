@@ -1,24 +1,27 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var restaurante_model_1 = require("./restaurante.model");
-var typedi_1 = require("typedi");
-var typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
-var typeorm_1 = require("typeorm");
-var class_validator_1 = require("class-validator");
-var response_data_1 = require("../response-data");
-var RestauranteService = (function () {
-    function RestauranteService() {
-    }
-    RestauranteService.prototype.create = function (props) {
-        var _this = this;
-        var params = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            params[_i - 1] = arguments[_i];
-        }
-        var idCliente = params[0];
-        var responseData = new response_data_1.ResponseData();
-        return class_validator_1.validate(props).then(function (errors) {
+const restaurante_model_1 = require("./restaurante.model");
+// import { Cliente } from "../cliente";
+const typedi_1 = require("typedi");
+const typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
+const typeorm_1 = require("typeorm");
+const class_validator_1 = require("class-validator");
+const response_data_1 = require("../response-data");
+let RestauranteService = class RestauranteService {
+    // @OrmRepository(Cliente) private clienteRepository: Repository<Restaurante>;
+    create(props, ...params) {
+        let idCliente = params[0];
+        let responseData = new response_data_1.ResponseData();
+        return class_validator_1.validate(props).then(errors => {
             if (errors.length > 0) {
                 errors.forEach(function (val) {
                     responseData.mensagens.push(val.value);
@@ -30,55 +33,53 @@ var RestauranteService = (function () {
             else {
                 responseData.mensagens.push("OK!");
                 props.cliente = idCliente;
-                responseData.objeto = _this.restauranteRepository.persist(props);
+                responseData.objeto = this.restauranteRepository.persist(props);
+                // idCliente.objeto = this.clienteRepository.persist(props);
             }
             return responseData;
         });
-    };
-    RestauranteService.prototype.readOne = function (id) {
-        var result = {};
+    }
+    readOne(id) {
+        let result = {};
         try {
             result = this.restauranteRepository
                 .findOneById(id)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    RestauranteService.prototype.update = function (props) {
+    }
+    update(props) {
         return this.restauranteRepository.persist(props);
-    };
-    RestauranteService.prototype.drop = function (id) {
-        var result = {};
+    }
+    drop(id) {
+        let result = {};
         try {
             result = this.readOne(id)
-                .then(function (res) { return (result = res); })
-                .catch(function (res) { return (result = res); });
+                .then(res => (result = res))
+                .catch(res => (result = res));
             result = this.restauranteRepository
                 .remove(result)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    RestauranteService.prototype.readAll = function () {
-        var params = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            params[_i] = arguments[_i];
-        }
+    }
+    readAll(...params) {
         return this.restauranteRepository.find();
-    };
-    tslib_1.__decorate([
-        typeorm_typedi_extensions_1.OrmRepository(restaurante_model_1.Restaurante),
-        tslib_1.__metadata("design:type", typeorm_1.Repository)
-    ], RestauranteService.prototype, "restauranteRepository", void 0);
-    RestauranteService = tslib_1.__decorate([
-        typedi_1.Service()
-    ], RestauranteService);
-    return RestauranteService;
-}());
+    }
+};
+__decorate([
+    typeorm_typedi_extensions_1.OrmRepository(restaurante_model_1.Restaurante),
+    __metadata("design:type", typeorm_1.Repository)
+], RestauranteService.prototype, "restauranteRepository", void 0);
+RestauranteService = __decorate([
+    typedi_1.Service()
+], RestauranteService);
 exports.RestauranteService = RestauranteService;

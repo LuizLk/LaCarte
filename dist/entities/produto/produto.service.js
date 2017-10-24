@@ -1,23 +1,24 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var produto_1 = require("../produto");
-var response_data_1 = require("../response-data");
-var typeorm_1 = require("typeorm");
-var typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
-var typedi_1 = require("typedi");
-var class_validator_1 = require("class-validator");
-var ProdutoService = (function () {
-    function ProdutoService() {
-    }
-    ProdutoService.prototype.create = function (props) {
-        var _this = this;
-        var params = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            params[_i - 1] = arguments[_i];
-        }
-        var responseData = new response_data_1.ResponseData();
-        return class_validator_1.validate(props).then(function (errors) {
+const produto_1 = require("../produto");
+const response_data_1 = require("../response-data");
+const typeorm_1 = require("typeorm");
+const typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
+const typedi_1 = require("typedi");
+const class_validator_1 = require("class-validator");
+let ProdutoService = class ProdutoService {
+    create(props, ...params) {
+        let responseData = new response_data_1.ResponseData();
+        return class_validator_1.validate(props).then(errors => {
             if (errors.length > 0) {
                 errors.forEach(function (val) {
                     responseData.mensagens.push(val.value);
@@ -26,56 +27,53 @@ var ProdutoService = (function () {
             }
             else {
                 responseData.mensagens.push("OK!");
-                responseData.objeto = _this.repository.persist(props);
+                responseData.objeto = this.repository.persist(props);
             }
             return responseData;
         });
-    };
-    ProdutoService.prototype.readOne = function (id) {
-        var result = {};
+    }
+    readOne(id) {
+        let result = {};
         try {
             result = this.repository
                 .findOneById(id)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    ProdutoService.prototype.update = function (props) {
+    }
+    update(props) {
         return this.repository.persist(props);
-    };
-    ProdutoService.prototype.drop = function (id) {
-        var result = {};
+    }
+    drop(id) {
+        let result = {};
         try {
             result = this.readOne(id)
-                .then(function (res) { return (result = res); })
-                .catch(function (res) { return (result = res); });
+                .then(res => (result = res))
+                .catch(res => (result = res));
             result = this.repository
                 .remove(result)
                 .then()
-                .catch(function (res) { return (result = res); });
+                .catch(res => (result = res));
         }
         catch (_a) {
+            // console.log(Error);
         }
         return result;
-    };
-    ProdutoService.prototype.readAll = function () {
-        var params = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            params[_i] = arguments[_i];
-        }
-        var idCardapio = params[0];
+    }
+    readAll(...params) {
+        let idCardapio = params[0];
         return this.repository.find({ cardapio: idCardapio });
-    };
-    tslib_1.__decorate([
-        typeorm_typedi_extensions_1.OrmRepository(produto_1.Produto),
-        tslib_1.__metadata("design:type", typeorm_1.Repository)
-    ], ProdutoService.prototype, "repository", void 0);
-    ProdutoService = tslib_1.__decorate([
-        typedi_1.Service()
-    ], ProdutoService);
-    return ProdutoService;
-}());
+    }
+};
+__decorate([
+    typeorm_typedi_extensions_1.OrmRepository(produto_1.Produto),
+    __metadata("design:type", typeorm_1.Repository)
+], ProdutoService.prototype, "repository", void 0);
+ProdutoService = __decorate([
+    typedi_1.Service()
+], ProdutoService);
 exports.ProdutoService = ProdutoService;
