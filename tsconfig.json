@@ -16,10 +16,17 @@
     "noUnusedParameters": false,
     "removeComments": true,
     "skipLibCheck": true,
+    "outDir": "dist",
     "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true
   }
